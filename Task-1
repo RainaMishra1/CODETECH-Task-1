@@ -1,0 +1,26 @@
+import string
+
+def evaluate_password(password):
+    # Minimum length requirement
+    MIN_LENGTH = 8
+    
+    # Check if the password meets the minimum length
+    if len(password) < MIN_LENGTH:
+        return "Password too short. It must be at least 8 characters."
+    
+    # Check for character types
+    has_lower = any(c.islower() for c in password)
+    has_upper = any(c.isupper() for c in password)
+    has_digit = any(c.isdigit() for c in password)
+    has_special = any(c in string.punctuation for c in password)
+    
+    # Check for basic requirements
+    if has_lower and has_upper and has_digit and has_special:
+        return "Password is strong."
+    else:
+        return "Password should include uppercase letters, lowercase letters, digits, and special characters."
+
+# Example usage
+password = input("Enter a password to assess: ")
+feedback = evaluate_password(password)
+print(feedback)
